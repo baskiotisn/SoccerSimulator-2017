@@ -95,7 +95,7 @@ class SoccerTournament(object):
         self.teams[self.nb_teams]=team
         self.scores[self.nb_teams-1]=score
         if self.nb_teams > 1:
-             for i, t in sorted(self.teams.items()[:-1]):
+             for i, t in sorted(list(self.teams.items())[:-1]):
                  self.matches[(i, self.nb_teams - 1)] = None
                  if self.retour: self.matches[(self.nb_teams - 1, i)] = None
         return self.nb_teams-1
