@@ -6,10 +6,11 @@ from .golf import GolfState,Golf,Parcours1,Parcours2,Parcours3,Parcours4
 from .mdpsoccer import  Player, SoccerTeam, Simulation
 from .matches import Score, SoccerTournament
 from .gui import SimuGUI, show_simu, show_state, pyg_start, pyg_stop, pyglet
+from .challenges import ChallengeFonceurButeur
 from . import  settings
 from . import gitutils
 import logging
-__version__ = '1.2017.02.05'
+__version__ = '1.2018.01.29'
 __project__ = 'soccersimulator'
 
 logging.basicConfig(format='%(name)s:%(levelname)s - %(message)s', level=logging.DEBUG)

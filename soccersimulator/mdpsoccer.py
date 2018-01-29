@@ -516,7 +516,7 @@ class Simulation(object):
             self.end_round()
     def begin_round(self):
         if not self.replay:
-            score=dict(self.state.score)
+            self.score=dict(self.state.score)
             self.set_state(self.get_initial_state())
             self.listeners.begin_round(self.team1,self.team2,self.state.copy())
             self.states.append(self.state.copy())
