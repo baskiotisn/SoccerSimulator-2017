@@ -95,7 +95,7 @@ class SoccerTournament(object):
         self.teams[self.nb_teams]=team
         self.scores[self.nb_teams-1]=score
         if self.nb_teams > 1:
-             for i, t in sorted(self.teams.items()[:-1]):
+             for i, t in sorted(list(self.teams.items())[:-1]):
                  self.matches[(i, self.nb_teams - 1)] = None
                  if self.retour: self.matches[(self.nb_teams - 1, i)] = None
         return self.nb_teams-1
@@ -204,6 +204,7 @@ class SoccerTournament(object):
         self.listeners.end_round(*args, **kwargs)
 
     def begin_match(self, *args, **kwargs):
+        print("begingni")
         logger.info("\033[33mDebut match : \033[0m%d/%d : \033[94m%s (%s) \033[0mvs \033[94m%s (%s)\033[0m" % (len(self.played)+1, self.nb_matches,
                                                     self.cur_match.get_team(1).name,self.cur_match.get_team(1).login,
                                                     self.cur_match.get_team(2).name,self.cur_match.get_team(2).login))

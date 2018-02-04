@@ -14,7 +14,7 @@ if __name__=="__main__":
     key =''
     while key !='q':
         tournoi.print_scores(True)
-        key = raw_input("Match ? : ")
+        key = input("Match ? : ")
         try:
             i,j = [int(x) for x in key.split(" ")]
             show_simu(tournoi.get_match(i,j))

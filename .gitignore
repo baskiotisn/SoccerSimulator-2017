@@ -84,4 +84,5 @@ __pycache__/
 .tox/
 .venv
 *.vrb
+.vscode/
 .webassets-cache
