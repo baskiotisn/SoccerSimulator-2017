@@ -17,13 +17,17 @@ def clean_fn(fn):
 
 
 def to_json(obj):
-    return json.dumps(obj,cls = MyJSONEncoder,ensure_ascii=False,encoding="utf-8")
+    try:
+        return json.dumps(obj,cls = MyJSONEncoder,ensure_ascii=False,encoding="utf-8")
+    except TypeError:
+        return json.dumps(obj,cls = MyJSONEncoder,ensure_ascii=False)
+    return None
 def from_json(strg):
     return json.loads(strg,cls=MyJSONDecoder)
 def from_jsonz(strg):
     return from_json(zlib.decompress(base64.b64decode(strg)))
 def to_jsonz(obj):
-    return base64.b64encode(zlib.compress(to_json(obj)))
+    return base64.b64encode(zlib.compress(to_json(obj).encode()))
 def dump_jsonz(obj,fname):
     with open(fname,"w") as f:
         f.write(to_jsonz(obj))

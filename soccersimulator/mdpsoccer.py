@@ -430,13 +430,19 @@ class Simulation(object):
         self._kill = False
         self.states = []
         self.error = False
-        self.replay = type(self.team1.strategy(0))==str #or type(self.team1.strategy(0)) == unicode
+        try:
+            self.replay = type(self.team1.strategy(0))==str or type(self.team1.strategy(0)) == unicode
+        except NameError:
+            self.replay = type(self.team1.strategy(0))==str
         for s in self.team1.strategies + self.team2.strategies:
             self.listeners += s
         self.__dict__.update(kwargs)
 
     def reset(self):
-        self.replay = type(self.team1.strategy(0))==str #or type(self.team1.strategy(0)) == unicode
+        try:
+            self.replay = type(self.team1.strategy(0))==str or type(self.team1.strategy(0)) == unicode
+        except NameError:
+            self.replay = type(self.team1.strategy(0))==str 
         self._thread = None
         self._kill = False
         self._on_going = False
@@ -455,6 +461,7 @@ class Simulation(object):
             self._thread = threading.Thread(target=self.start)
             self._thread.start()
     def kill(self):
+        print("end")
         self._kill = True
     def set_state(self,state):
         state.score = self.state.score
@@ -462,6 +469,7 @@ class Simulation(object):
         self.state.max_steps = self.max_steps
         self.state.step = len(self.states)
     def start(self):
+        print("toto")
         if self._on_going:
             return
         if self.replay:

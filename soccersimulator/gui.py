@@ -216,7 +216,7 @@ class SimuGUI(pyglet.window.Window):
     def play(self):
         try:
             self.simu.start_thread()
-        except Exception:
+        except Exception as e:
             pass
 
     def get_state(self):
