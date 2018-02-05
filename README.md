@@ -2,10 +2,10 @@ UE 2I013 - Projet - UPMC
 ==================================
 
 Le dépôt contient :
-* [soccersimulator](https://github.com/baskiotisn/SoccerSimulator/tree/master/soccersimulator) : le module python coeur du projet (objets, simulation, visualisation)
-* [docs](https://github.com/baskiotisn/SoccerSimulator/tree/master/docs) : le cours et les tutoriels.
-* [examples](https://github.com/baskiotisn/SoccerSimulator/tree/master/docs) : scripts d'exemples
-* [resultats](https://github.com/baskiotisn/SoccerSimulator/tree/master/resultats) : le progres hebdomadaire et les liens vers les replays.
+* [soccersimulator](https://github.com/baskiotisn/SoccerSimulator-2017/tree/master/soccersimulator) : le module python coeur du projet (objets, simulation, visualisation)
+* [docs](https://github.com/baskiotisn/SoccerSimulator-2017/tree/master/docs) : le cours et les tutoriels.
+* [examples](https://github.com/baskiotisn/SoccerSimulator-2017/tree/master/Exemple_GIT_REPO) : scripts d'exemples
+* [resultats](https://github.com/baskiotisn/SoccerSimulator-2017/tree/master/resultats) : le progres hebdomadaire et les liens vers les replays.
 
 Installation
 ============
