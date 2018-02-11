@@ -461,7 +461,6 @@ class Simulation(object):
             self._thread = threading.Thread(target=self.start)
             self._thread.start()
     def kill(self):
-        print("end")
         self._kill = True
     def set_state(self,state):
         state.score = self.state.score
@@ -469,7 +468,6 @@ class Simulation(object):
         self.state.max_steps = self.max_steps
         self.state.step = len(self.states)
     def start(self):
-        print("toto")
         if self._on_going:
             return
         if self.replay:
