@@ -168,12 +168,12 @@ class SoccerTournament(object):
             i = self.find_team(i)
             j = self.find_team(j)
         if self.matches[(i,j)] is not None:
-            return from_jsonz(self.matches[(i, j)])
+            return from_jsonz(self.matches[(i, j)].encode())
         return None
     def get_matches(self, i):
         if type(i) == str:
             i = self.find_team(i)
-        return [from_jsonz(m) for k, m in self.matches.items() if (k[0] == i or k[1] == i) and (m is not None)]
+        return [from_jsonz(m.encode()) for k, m in self.matches.items() if (k[0] == i or k[1] == i) and (m is not None)]
 
     def format_scores(self,with_id=True):
         sc = sorted([(score, i) for i,score  in self.scores.items()], reverse=True)

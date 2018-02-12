@@ -29,6 +29,7 @@ class ChallengeFonceurButeur(Simulation):
         if len(self.resultats)>0:
             self.stats_score = sum(self.resultats)/len(self.resultats)
         super(ChallengeFonceurButeur,self).end_match()
+        
 class Challenge(SoccerTournament):
     def __init__(self,idchal,**kwargs):
         super(Challenge,self).__init__(**kwargs)
