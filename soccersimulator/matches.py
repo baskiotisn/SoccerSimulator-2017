@@ -204,7 +204,6 @@ class SoccerTournament(object):
         self.listeners.end_round(*args, **kwargs)
 
     def begin_match(self, *args, **kwargs):
-        print("begingni")
         logger.info("\033[33mDebut match : \033[0m%d/%d : \033[94m%s (%s) \033[0mvs \033[94m%s (%s)\033[0m" % (len(self.played)+1, self.nb_matches,
                                                     self.cur_match.get_team(1).name,self.cur_match.get_team(1).login,
                                                     self.cur_match.get_team(2).name,self.cur_match.get_team(2).login))
