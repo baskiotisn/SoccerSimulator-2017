@@ -1,12 +1,12 @@
-from soccersimulator import SoccerTeam, Simulation, show_simu, Strategy
-from strategies  import RandomStrategy
+from soccersimulator import SoccerTeam, Simulation, show_simu
+from profAI import FonceurStrategy,DefenseurStrategy,get_team
 
 
 ## Creation d'une equipe
-pyteam = SoccerTeam(name="PyTeam")
+pyteam = get_team(2)
 thon = SoccerTeam(name="ThonTeam")
-pyteam.add("PyPlayer",Strategy()) #Strategie qui ne fait rien
-thon.add("ThonPlayer",RandomStrategy())   #Strategie aleatoire
+thon.add("PyPlayer",FonceurStrategy()) #Strategie qui ne fait rien
+thon.add("ThonPlayer",DefenseurStrategy())   #Strategie aleatoire
 
 #Creation d'une partie
 simu = Simulation(pyteam,thon)
