@@ -1,8 +1,7 @@
 from soccersimulator import ChallengeFonceurButeur, SoccerTeam,show_simu
-from strategies import RandomStrategy
+from profAI import get_team_challenge
 
-team = SoccerTeam("RandomEquipe")
-team.add("RandomJoueur",RandomStrategy())
+team = get_team_challenge(1)
 
 challenge = ChallengeFonceurButeur(team,max_but=20)
 show_simu(challenge)
