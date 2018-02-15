@@ -1,4 +1,5 @@
-from .strategies import DefenseurStrategy,FonceurStrategy,RandomStrategy
+from .strategies import DefenseurStrategy,FonceurStrategy,RandomStrategy, FonceurTestStrategy
+from .optimization import ParamSearch
 from soccersimulator import SoccerTeam
 
 def get_team(nb_players):
