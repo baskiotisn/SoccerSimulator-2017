@@ -22,5 +22,16 @@ class DefenseurStrategy(Strategy):
         I = ConditionDefenseur(ComportementNaif(SuperState(state,id_team,id_player)))
         return defenseur(I)
 
+class FonceurTestStrategy(Strategy):
+    def __init__(self, strength=None):
+        Strategy.__init__(self,"Fonceur")
+        self.strength = strength
+    def compute_strategy(self,state,id_team,id_player):
+        C = ComportementNaif(SuperState(state,id_team,id_player))
+        if self.strength:
+            C.SHOOT_COEF = self.strength
+        I = ConditionAttaque(C)
+        return fonceur(I)
+
 
 
