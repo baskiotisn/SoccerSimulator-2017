@@ -71,7 +71,7 @@ class ParamSearch(object):
             res_key = tuple()
             for i, values in zip(self.param_id, self.params.values()):
                 res_key += values[i],
-            self.res[res_key] = self.crit * self.trials
+            self.res[res_key] = self.crit * 1. / self.trials
             print(res_key, self.crit)
 
             # Reset parameters
