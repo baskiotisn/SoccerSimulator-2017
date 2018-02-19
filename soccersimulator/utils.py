@@ -62,14 +62,14 @@ class MyJSONDecoder(json.JSONDecoder):
 
 
 class Vector2D(object):
-    """ Vecteur 2D : peut etre creer soit par ses coordonnees (x,y) soit par ses coordonnees polaire
+    """ Vecteur 2D : peut etre cree soit par ses coordonnees (x,y) soit par ses coordonnees polaires
     angle et norme.
     """
 
     def __init__(self, x=0., y=0., angle=None, norm=None):
         """ create a vector
         :param x: 1ere coordonnee
-        :param y: 2nd coordonnee
+        :param y: 2e coordonnee
         :param angle: angle en radian
         ;param norm: norme du vecteur
         """
@@ -94,7 +94,7 @@ class Vector2D(object):
     @property
     def y(self):
         """
-        2nd coordonnee
+        2e coordonnee
         """
         return self._y
 
@@ -210,7 +210,7 @@ class Vector2D(object):
     @classmethod
     def create_random(cls, low=0, high=1.):
         """
-        Cree un vecteur aleatoire entre lov et high
+        Cree un vecteur aleatoire entre low et high
         :param float low: valeur minimale
         :param float high: valeur maximale exclue
         :return: vecteur
