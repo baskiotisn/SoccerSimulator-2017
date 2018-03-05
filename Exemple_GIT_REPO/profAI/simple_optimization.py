@@ -3,19 +3,22 @@ from __future__ import print_function, division
 from soccersimulator import SoccerTeam, Simulation, Strategy, show_simu, Vector2D
 from soccersimulator.settings import GAME_WIDTH, GAME_HEIGHT
 from .strategies import FonceurTestStrategy
+import pickle
 
 class SimpleParamSearch(object):
-    def __init__(self, trials=5, max_round_step=40,discret = 5):
+    def __init__(self, trials=2, max_round_step=40,discret = 5):
         self.trials = trials
         self.max_round_step = max_round_step
-        self.list_forces = [0,0.5,1.,1.5,2,2.5,3,3.5]
+        #self.list_forces = [0,0.5,1.,1.5,2,2.5,3,3.5]
+        self.list_forces = [1,2,3]
         self.list_grille = []
         #Fabrication de la grille de discretisation du terrain
-        stepx = GAME_WIDTH/(2.*discret)
-        stepy = GAME_HEIGHT/(1.*discret)
+        self.discret = discret
+        self.stepx = GAME_WIDTH/(2.*discret)
+        self.stepy = GAME_HEIGHT/(1.*discret)
         for i in range(discret):
             for j in range(discret):
-                self.list_grille.append(Vector2D(GAME_WIDTH/2.+stepx*i,stepy*j))
+                self.list_grille.append(Vector2D(GAME_WIDTH/2.+self.stepx*i,self.stepy*j))
         self.strategy= FonceurTestStrategy()
     def start(self, show=True):
         team1 = SoccerTeam("Team 1")
@@ -58,9 +61,11 @@ class SimpleParamSearch(object):
             self.crit += 1  # Increment criterion
         self.cpt += 1  # Increment number of trials
         if self.cpt >= self.trials:
-            key = (self.list_grille[self.idx_grille].x,self.list_grille[self.idx_grille].y,self.list_forces[self.idx_force])
-            self.res[key] = self.crit * 1. / self.trials
-            print("Res pour  position %s force %f : %f" % (str(self.list_grille[self.idx_grille]),self.list_forces[self.idx_force],self.res[key]))
+            key = (self.list_grille[self.idx_grille].x,self.list_grille[self.idx_grille].y)
+            if key not in self.res:
+                self.res[key]=[]
+            self.res[key].append((self.list_forces[self.idx_force],self.crit*1./self.trials))
+            print("Res pour  position %s force %f : %f" % (str(key),self.res[key][-1][0],self.res[key][-1][1]))
             # Reset parameters
             self.crit = 0
             self.cpt = 0
@@ -71,8 +76,14 @@ class SimpleParamSearch(object):
                 self.idx_force = 0
                 if self.idx_grille>=len(self.list_grille):
                     self.simu.end_match()
-    def get_res(self):
-        return self.res
+    def end_match(self,team1,team2,state):
+        #Trouve les meilleurs parametres et les sauvegarde
+        best_force = dict()
+        for k,v in self.res.items():
+            best_force[k] = sorted(v,key=lambda x : x[1])[-1][0]
+        with open("best_force.pkl","wb") as fn:
+            pickle.dump(best_force,fn)
+
 
 if __name__=="__main__":
     psearch = SimpleParamSearch()
