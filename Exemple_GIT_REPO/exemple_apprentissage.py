@@ -16,7 +16,7 @@ def my_get_features(state,idt,idp):
     state = SuperState(state,idt,idp)
     f1 = state.distance(state.ball_p)
     f2 = state.distance(state.my_goal)
-    f3 = state.ball_p.distance(state.ball_p)
+    f3 = state.ball_p.distance(state.my_goal)
     return [f1,f2,f3]
 
 my_get_features.names = ["dball","dbut","dballbut"]
@@ -52,7 +52,7 @@ def apprendre(exemples, get_features,fname=None):
 
 if __name__=="__main__":
 
-    entrainer("tree_test.pkl")
+    entrainer("test_kb_strat.jz")
 
     dic_strategy = {FonceurStrategy().name:FonceurStrategy(),DefenseurStrategy().name:DefenseurStrategy()}
 
