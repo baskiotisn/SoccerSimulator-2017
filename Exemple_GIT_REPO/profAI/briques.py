@@ -18,7 +18,7 @@ class ComportementNaif(Comportement):
         if shoot_coef is None:
             shoot_coef = self.SHOOT_COEF
         if self.can_kick:
-            return SoccerAction(shoot=(self.his_goal-self.ball_p).normalize()*self.shoot_coef)
+            return SoccerAction(shoot=(self.his_goal-self.ball_p).normalize()*self.SHOOT_COEF)
         return SoccerAction()
     def degage(self):
         if self.can_kick:

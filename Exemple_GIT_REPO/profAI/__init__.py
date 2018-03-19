@@ -1,6 +1,7 @@
 from .strategies import DefenseurStrategy,FonceurStrategy,RandomStrategy, FonceurTestStrategy
 from .optimization import ParamSearch
 from soccersimulator import SoccerTeam
+from .tools import SuperState
 
 def get_team(nb_players):
 	myteam = SoccerTeam(name="ProfTeam")
