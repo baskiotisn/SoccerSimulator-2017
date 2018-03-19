@@ -30,7 +30,7 @@ class FonceurTestStrategy(Strategy):
         self.best_force = None
         if fn is not None:
             import os
-            fn=os.path.join(os.path.dir name(os.path.realpath(__file__)),fn)
+            fn=os.path.join(os.path.dirname(os.path.realpath(__file__)),fn)
             with open(fn,"rb") as f:
                 self.best_force = pickle.load(f)
     def compute_strategy(self,state,id_team,id_player):
