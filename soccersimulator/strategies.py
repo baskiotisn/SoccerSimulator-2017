@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .mdpsoccer import SoccerAction
 from .utils import Vector2D,dump_jsonz
+import logging
 ##############################################################################
 # SoccerStrategy
 ##############################################################################
@@ -106,7 +107,23 @@ class KeyboardStrategy(Strategy):
             self.cur=key
             self.name = self.dic_keys[self.cur].name
             self.states.append((self.state, (self.idt,self.idp,self.name)))
-
     def begin_match(self,team1,team2,state):
         if self.reset:
             self.states=[]
+
+
+
+class DTreeStrategy(Strategy):
+    def __init__(self,tree,dic,get_features):
+        super(DTreeStrategy,self).__init__("Tree Strategy")
+        self.dic = dic
+        self.tree = tree
+        self.get_features = get_features
+        self.logger = logging.getLogger("arbrestrategie")
+
+    def compute_strategy(self, state, id_team, id_player):
+        label = self.tree.predict([self.get_features(state,id_team,id_player)])[0]
+        if label not in self.dic:
+            self.logger.error("Erreur : strategie %s non trouve" %(label,))
+            return SoccerAction()
+        return self.dic[label].compute_strategy(state,id_team,id_player)

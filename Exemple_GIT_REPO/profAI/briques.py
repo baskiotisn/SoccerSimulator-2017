@@ -14,7 +14,9 @@ class ComportementNaif(Comportement):
         return SoccerAction(acceleration=(p-self.me).normalize()*self.RUN_COEF)
     def go(self,p):
         return SoccerAction(acceleration=(p-self.me).normalize()*self.GO_COEF)
-    def shoot(self):
+    def shoot(self,shoot_coef=None):
+        if shoot_coef is None:
+            shoot_coef = self.SHOOT_COEF
         if self.can_kick:
             return SoccerAction(shoot=(self.his_goal-self.ball_p).normalize()*self.SHOOT_COEF)
         return SoccerAction()
