@@ -24,6 +24,7 @@ setup(
     author='Nicolas Baskiotis',
     install_requires=['numpy',
                     'pyglet',
+                    'sklearn',
                     ],
     author_email='nicolas.baskiotis@lip6.fr',
     description='Soccer Simulator and MDP for 2I013 UPMC project',
