@@ -1,6 +1,7 @@
 from . import settings
 from .utils import Vector2D, MobileMixin
 from .mdpsoccer import SoccerState, Simulation, Ball,PlayerState
+from .utils import dict_to_json
 import math
 
 MAX_SHOOT_SPEED = 0.1
@@ -36,6 +37,8 @@ class BillardState(SoccerState):
         self.max_steps = kwargs.pop('max_steps',settings.MAX_GAME_STEPS)
         self.goal = kwargs.pop('goal',0)
         self.__dict__.update(kwargs)
+    def to_dict(self):
+        return dict(states = dict_to_json(self.states), strategies = dict_to_json(self.strategies), ball = self.ball,score=dict_to_json(self.score),step=self.step,max_steps=self.max_steps,goal=self.goal,balls=self.balls)
     def apply_actions(self,actions=None,strategies=None):
         if strategies: self.strategies.update(strategies)
         sum_of_shoots = Vector2D()
@@ -51,12 +54,10 @@ class BillardState(SoccerState):
         for b in lballs:
             ball_col = [bb for bb in lballs if b!=bb and b.position.distance(bb.position)<=(2*settings.BALL_RADIUS) and  bb not in djvu]
             if len(ball_col)>0:
-                print(b,ball_col[0])
                 vball,vb=get_collision(b,ball_col[0])
                 b.vitesse=vball
                 ball_col[0].vitesse=vb
-                print(vball,vb)
-                print("new",b,ball_col[0])
+               
             if b != self.ball:
                 if b.inside_goal() and b.position.x>settings.GAME_WIDTH:
                     self.score[1]+=1
@@ -86,7 +87,7 @@ class BillardState(SoccerState):
     @classmethod
     def create_initial_state(cls,type_game=0):
         state = cls()
-        state.reset_state(type_game=0)
+        state.reset_state(type_game=type_game)
         return state       
     def reset_state(self,type_game=0):
         self.states =dict()
@@ -105,7 +106,8 @@ class BillardState(SoccerState):
         self.goal = 0
 
 class Billard(Simulation):
-    def __init__(self,team1=None,max_steps=settings.MAX_GAME_STEPS,initial_state = None,type_game=0):
-        super(Billard,self).__init__(team1=team1,initial_state = initial_state or BillardState.create_initial_state(type_game))
+    def __init__(self,team1=None,max_steps=20000,initial_state = None,type_game=0,**kwarg):
+        init_state = initial_state or BillardState.create_initial_state(type_game)
+        super(Billard,self).__init__(team1=team1,initial_state = init_state,max_steps=max_steps,**kwarg)
     def stop(self):
         return super(Billard,self).stop() or self.state.stop()
