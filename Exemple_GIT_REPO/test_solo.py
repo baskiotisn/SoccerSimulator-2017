@@ -18,6 +18,6 @@ class FonceurLent(Strategy):
 
 myt = SoccerTeam("prof")
 myt.add("N",FonceurLent())
-b = Billard(myt,type_game=1)
+b = Billard(myt,type_game=-1)
 show_simu(b)
 
