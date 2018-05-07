@@ -9,6 +9,7 @@ from .challenges import *
 from . import  settings
 from . import gitutils
 from .arbres_utils import apprend_arbre,build_apprentissage,genere_dot
+from .billard import BillardState, PlayerStateBillard, Billard,get_collision
 import logging
 __version__ = '1.2018.02.01'
 __project__ = 'soccersimulator'

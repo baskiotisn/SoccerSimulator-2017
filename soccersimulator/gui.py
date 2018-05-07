@@ -87,6 +87,9 @@ class SimuGUI(pyglet.window.Window):
             return
         self._sprites = dict()
         self._sprites["ball"] = BallSprite()
+        if hasattr(self.state,"balls"):
+            for i,b in enumerate(self.state.balls):
+                self._sprites["ball"+str(i)]=BallsSprite()
         for k, v in self.state.players:
             if not self.get_team(k):
                 name_p = '%d %d|' % (k, v)
@@ -124,6 +127,10 @@ class SimuGUI(pyglet.window.Window):
                 self._sprites[(i,"z2")].set_color( GREEN_COLOR if self.state.zones_2_bool[i] else RED2_COLOR)
         self._sprites["ball"].position = self.state.ball.position
         self._sprites["ball"].vitesse = self.state.ball.vitesse
+        if hasattr(self.state,"balls"):
+            for i,b in enumerate(self.state.balls):
+                self._sprites["ball"+str(i)].position = b.position
+                self._sprites["ball"+str(i)].vitesse = b.vitesse
 
     def reset(self):
         self._state = None

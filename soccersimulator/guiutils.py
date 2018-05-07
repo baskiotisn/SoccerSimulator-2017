@@ -101,6 +101,9 @@ def get_player_prims(color):
 def get_ball_prims():
         rad = settings.BALL_RADIUS
         return get_circle_prims(rad, BALL_COLOR)
+def get_balls_prims():
+        rad = settings.BALL_RADIUS
+        return get_circle_prims(rad, BALLS_COLOR)
 
 def get_field_prims():
         field = Primitive2DGL([(0, 0), (0, settings.GAME_HEIGHT),
@@ -183,6 +186,11 @@ class BallSprite(ObjectSprite):
     def __init__(self):
         ObjectSprite.__init__(self)
         self.add_primitives(get_ball_prims())
+
+class BallsSprite(ObjectSprite):
+    def __init__(self):
+        ObjectSprite.__init__(self)
+        self.add_primitives(get_balls_prims())
 
 class RectSprite(ObjectSprite):
     def __init__(self,l,color):

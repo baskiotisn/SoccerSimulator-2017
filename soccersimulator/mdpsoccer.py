@@ -75,6 +75,7 @@ class Ball(MobileMixin):
             vitesse = speed_tmp
         self.vitesse = vitesse.norm_max(settings.maxBallAcceleration).copy()
         self.position += self.vitesse
+        
     def inside_goal(self):
         return (self.position.x < 0 or self.position.x > settings.GAME_WIDTH)\
                 and abs(self.position.y - (settings.GAME_HEIGHT / 2.)) < settings.GAME_GOAL_HEIGHT / 2.
