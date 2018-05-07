@@ -96,6 +96,8 @@ class BillardState(SoccerState):
         self.states[(1,0)] = PlayerStateBillard(position=Vector2D(settings.GAME_WIDTH*0.1,settings.GAME_HEIGHT*0.5))
         self.ball = Ball(Vector2D(settings.GAME_WIDTH*0.25,settings.GAME_HEIGHT*0.5))
         self.balls = []
+        if type_game==-1:
+            self.balls=[Ball(Vector2D(settings.GAME_WIDTH*0.5,settings.GAME_HEIGHT*0.5))]
         if type_game==0:
             self.balls=[Ball(Vector2D(settings.GAME_WIDTH*0.75,settings.GAME_HEIGHT*0.75))]
         if type_game==1:
