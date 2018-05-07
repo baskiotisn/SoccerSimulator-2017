@@ -7,6 +7,8 @@ import math
 MAX_SHOOT_SPEED = 0.1
 settings.BALL_RADIUS=1.5
 MAX_BALL_SHOOT_SPEED = 0.01
+settings.ballBrakeConstant = 0.01
+settings.ballBrakeSquare = 0.005
 def get_collision(a,b):
     ### a, b MobileMixin
     vdir = (b.position-a.position).normalize()
